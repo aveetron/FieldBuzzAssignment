@@ -93,7 +93,7 @@ class ApplicationPage(View):
             self.cvFileId = self.getJsonResponseData['cv_file']['id']
             self.fileUploadUrl= "https://recruitment.fisdev.com/api/file-object/{}/".format(self.cvFileId)
             self.getCv = request.FILES['cv_pdf_file']
-            self.files = {'file': self.getCv.read()}
+            self.files = {'file': self.getCv.read(), 'boundary':''}
             self.cvUploadHeaders = {'content-type': 'multipart/form-data;boundary=uuuhrfanfrufiavee71','Authorization':'token {}'.format(get_token[1])}
             self.response = requests.put(self.fileUploadUrl, headers = self.cvUploadHeaders, files = self.files)
             print('file upload ',self.response.content)
